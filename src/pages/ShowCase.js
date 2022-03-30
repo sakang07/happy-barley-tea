@@ -83,7 +83,7 @@ const Item = styled.div`
   width: 100%;
   height: 382px;
   margin-bottom: 40px;
-  background-color: #fff;
+  //background-color: #fff;
 `;
 
 const ListTitle = styled.div`
@@ -145,8 +145,7 @@ const ShowCase = () => {
           <figcaption>만나서 반가워요</figcaption>
         </WorkInWinter>
         <Item>
-          <ItemDiv 
-          /> {/* item={filterData} */}
+          <ItemDiv />
         </Item>
         <ListTitle>
           <HeaderSecondTitle color="#fff" fontSize={"44px"}>showcase list</HeaderSecondTitle>
