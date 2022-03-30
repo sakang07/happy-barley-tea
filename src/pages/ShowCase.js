@@ -83,7 +83,7 @@ const Item = styled.div`
   width: 100%;
   height: 382px;
   margin-bottom: 40px;
-  background-color: #fff;
+  //background-color: #fff;
 `;
 
 const ListTitle = styled.div`
@@ -123,13 +123,6 @@ const ShowCase = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const expenses = [
-    { image : 'img_01', caption: '클래식한 프레피룩의 유쾌한 반란'},
-    { image : 'img_02', caption: '스타들의 베리 페리 룩'},
-    { image : 'img_03', caption: '트렌치코트 스타 일링 포인트 5'},
-    { image : 'img_04', caption: '어떤 청바지를 입을까'}
-  ];
-
   return (
     <ShowCaseDiv>
       <ShowCaseWapper>
@@ -152,18 +145,7 @@ const ShowCase = () => {
           <figcaption>만나서 반가워요</figcaption>
         </WorkInWinter>
         <Item>
-          <ItemDiv 
-            image={expenses[0].image} 
-            caption={expenses[0].caption} />
-          <ItemDiv 
-            image={expenses[1].image} 
-            caption={expenses[1].caption} />
-          <ItemDiv 
-            image={expenses[2].image} 
-            caption={expenses[2].caption} />
-          <ItemDiv 
-            image={expenses[3].image} 
-            caption={expenses[3].caption} />
+          <ItemDiv />
         </Item>
         <ListTitle>
           <HeaderSecondTitle color="#fff" fontSize={"44px"}>showcase list</HeaderSecondTitle>
