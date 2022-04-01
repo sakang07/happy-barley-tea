@@ -10,6 +10,7 @@ const ItemDiv = styled.div`
   flex-wrap:wrap;
   width: 100%;
   height: ${(props) => props.height || "100%"};
+  margin-top: 40px;
   //margin-right: 20px;
   //background-color: #fff;
 
@@ -49,26 +50,3 @@ function ItemDivContent(props) {
 
 export default ItemDivContent;
 
-// const ItemDivContent = (props) => {
-//   console.log(props);
-//    
-//   return (
-//     <ItemDiv>
-//       <ItemCard height={'290px'} />
-//         <Link to="/">
-//           <img alt="" src=""/>
-//         </Link>
-//       <ItemContent></ItemContent>
-//     </ItemDiv>
-//   )
-// }
-// 
-// 
-// const ItemDivSample = () => {
-//     return (
-//         <ItemDiv>
-//           <figure>img</figure>
-//           <figcaption>나홀로 즐겁게 혼밥</figcaption>
-//         </ItemDiv>
-//     );
-// };
