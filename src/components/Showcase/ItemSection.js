@@ -2,9 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const ItemBox = styled.div`
-  width: calc(100% / 4);
+  width: calc( (100% / 4) - 40px );
   height: auto;
-  padding: 0 40px 0 0;
   //background-color:#ade;
 
 `
