@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import styled from 'styled-components';
-import LifeStyleCardList from '../components/LifeStyle/LifeStyleCardList';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import styled from "styled-components";
+import LifeStyleCardList from "../components/LifeStyle/LifeStyleCardList";
 import {
   WrapperSection,
   HeaderSecondTitle,
   SectionWrapper,
   WrapperDiv,
-} from '../components/common/Common';
-import { db, storage } from '../firebase-config';
-import { collection, onSnapshot } from 'firebase/firestore';
-import { ref, getDownloadURL } from 'firebase/storage';
+} from "../components/common/Common";
+import { db, storage } from "../firebase-config";
+import { collection, onSnapshot } from "firebase/firestore";
+import { ref, getDownloadURL } from "firebase/storage";
 
 const TabMenuList = styled.ul`
   display: flex;
@@ -50,17 +50,17 @@ const LifeStyle = () => {
   const [isLoading, setIsloding] = useState(true);
   const [loadedData, setLoadedData] = useState([]);
   const [clickNum, setClickNum] = useState(1);
-  const [categoryName, setCategoryName] = useState('all');
+  const [categoryName, setCategoryName] = useState("all");
 
   const categoryArr = [
-    'all',
-    'trend',
-    'enjoy',
-    'shopping',
-    'relationship',
-    'business',
-    'viewpoint',
-    'culture',
+    "all",
+    "trend",
+    "enjoy",
+    "shopping",
+    "relationship",
+    "business",
+    "viewpoint",
+    "culture",
   ];
 
   useEffect(() => {
@@ -69,33 +69,33 @@ const LifeStyle = () => {
 
   useEffect(() => {
     setIsloding(true);
-    onSnapshot(collection(db, 'lifestyle'), snapshot => {
+    onSnapshot(collection(db, "lifestyle"), snapshot => {
       const dataArr = [];
       const textArr = snapshot.docs.map(doc => doc.data());
       for (const key in textArr) {
         const rel = {
           image: `https://firebasestorage.googleapis.com/v0/b/the-single-plus.appspot.com/o/lifestyle%2Fthumb_${key.padStart(
             3,
-            '0'
+            "0"
           )}.png?alt=media&token=8e94089b-651c-4904-95d8-103ae92d681b`,
           ...textArr[key],
         };
         dataArr.push(rel);
       }
 
-      console.log(dataArr);
+      // console.log(dataArr);
       setLoadedData(dataArr);
     });
 
     setIsloding(false);
   }, []);
 
-  const storageRef = ref(storage, 'lifestyle/thumb_000.png');
-  getDownloadURL(storageRef).then(url => console.log(url));
+  const storageRef = ref(storage, "lifestyle/thumb_000.png");
+  // getDownloadURL(storageRef).then(url => console.log(url));
 
   const filterData = loadedData
     .filter((card, idx) => {
-      if (categoryName === 'all') {
+      if (categoryName === "all") {
         return card;
       } else {
         return categoryName === card.category;
@@ -115,14 +115,14 @@ const LifeStyle = () => {
   const sortNewHandler = () => {
     const sortData = [...loadedData];
     sortData.sort((a, b) => new Date(b.date) - new Date(a.date));
-    console.log(sortData, 'new');
+    console.log(sortData, "new");
     setLoadedData(sortData);
   };
 
   const sortPopularHandler = () => {
     const sortData = [...loadedData];
     sortData.sort((a, b) => b.like - a.like);
-    console.log(sortData, 'like');
+    console.log(sortData, "like");
     setLoadedData(sortData);
   };
 
@@ -133,17 +133,17 @@ const LifeStyle = () => {
 
   return (
     <WrapperSection>
-      <SectionWrapper width='1320px' padding='100px 0 145px'>
+      <SectionWrapper width="1320px" padding="100px 0 145px">
         <WrapperDiv>
-          <HeaderSecondTitle fontSize='44px' color='#111'>
+          <HeaderSecondTitle fontSize="44px" color="#111">
             lifestyle
           </HeaderSecondTitle>
           <WrapperDiv>
             <TabMenuList>
-              <h3 className='blind'>tab menu</h3>
+              <h3 className="blind">tab menu</h3>
               {categoryArr.map((el, idx) => (
                 <li key={idx}>
-                  <button type='button' onClick={() => movePageHandler(el)}>
+                  <button type="button" onClick={() => movePageHandler(el)}>
                     {el}
                   </button>
                 </li>
@@ -152,14 +152,16 @@ const LifeStyle = () => {
           </WrapperDiv>
         </WrapperDiv>
 
-        <LifeStyleCardList
-          data={filterData}
-          category={categoryName}
-          sort={[sortNewHandler, sortPopularHandler]}
-        />
+        {
+          <LifeStyleCardList
+            data={filterData}
+            category={categoryName}
+            sort={[sortNewHandler, sortPopularHandler]}
+          />
+        }
 
         <More>
-          <button type='button' onClick={fetchMoreHandler}>
+          <button type="button" onClick={fetchMoreHandler}>
             + more
           </button>
         </More>
